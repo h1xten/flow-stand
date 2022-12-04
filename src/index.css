@@ -9,6 +9,11 @@
   src: url(/src/assets/fonts/digital-7.ttf);
 }
 
+body {
+  font-size: 16px;
+ 
+}
+
 .btn {
   height: 45px;
   width: 45px;

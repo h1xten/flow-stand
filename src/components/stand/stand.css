@@ -1,13 +1,4 @@
-.stand {
-  display: flex;
-  position: relative;
 
-  min-width: 40vw;
-  min-height: 65vh;
-  margin-bottom: 5vh;
-
-  border: 2px solid black;
-}
 .frontstand {
   display: flex;
   flex-direction: column;
@@ -19,7 +10,6 @@
   bottom: 0;
   left: 0;
   z-index: 5;
-
   padding-top: 5vw;
   padding-left: 5vw;
   padding-bottom: 2vw;
@@ -27,11 +17,69 @@
 
 .backstand {
   display: flex;
-  background-color: inherit;
-  top: 0;
-  right: 0;
+  transform: translateZ(-7em);
+  justify-content: space-between;
+  /* box-shadow: 0px 0px 100px 60px rgba(2, 2, 2, 0.2) inset;
+  border: 2px solid red; */
+  border-bottom: 1px solid black;
+  /* opacity: 0.75;
+  filter: blur(1px); */
   bottom: 0;
   left: 0;
+  top: 0;
+  right: 0;
   position: absolute;
   z-index: 4;
+}
+.backstand-1 {
+  width: 45%;
+  height: 100%;
+}
+.backstand-2 {
+  height: 100%;
+  width: 55%;
+  background-color: red;
+  background: url(/src/assets/img/back.png) no-repeat;
+}
+
+.leftside {
+  position: absolute;
+  top: 0;
+  bottom: -1em;
+  left: -5em;
+  transform: translateX(-5em) rotateY(90deg);
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 50%;
+  min-height: 100%;
+}
+.rightside {
+  position: absolute;
+  top: 0;
+  bottom: -1em;
+  right: -5em;
+  transform: translateX(5em) rotateY(90deg);
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 50%;
+}
+.topside{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  /* transform: translateX(-5em) rotateY(90deg); */
+  background: orange;
+  width: 50%;
+}
+.bottomside{
+
+}
+.pchv {
+  position: absolute;
+  top: 48%;
+  left: 33%;
+  width: 150px;
+  height: 150px;
+  background: url(/src/assets/img/pchv.png) no-repeat center;
 }
