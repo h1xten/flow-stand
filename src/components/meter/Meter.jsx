@@ -4,9 +4,6 @@ import './meter.css'
 import { KeyboardDoubleArrowDown, KeyboardDoubleArrowUp } from '@mui/icons-material'
 
 const Meter = ({N}) => {
-  let Q = (102.74 * Math.log(N) - 65.27).toFixed(2)
-
-  if(N === 0) Q = '---'
 
   return (
     <Box
@@ -40,7 +37,7 @@ const Meter = ({N}) => {
           justifyContent='right'
           p='0px 10px'
         >
-          {N}
+          -
         </Typography>
         <Typography
           height='30%'

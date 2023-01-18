@@ -13,7 +13,7 @@ const PumpButtons = ({N}) => {
       return
     }
     if(N >= 80) return
-    dispatch(setN(N+5))
+    dispatch(setN(N+1))
   }
   const handleDown = () => {
     if(N <= 0) return
@@ -21,7 +21,7 @@ const PumpButtons = ({N}) => {
       dispatch(setN(0))
       return
     }
-    dispatch(setN(N-5))
+    dispatch(setN(N-1))
   }
 
   const handleStart = () => {
