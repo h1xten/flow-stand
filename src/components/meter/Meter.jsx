@@ -1,10 +1,9 @@
 import React from 'react'
-import {Box, Button, Typography} from '@mui/material'
+import {Box, Typography} from '@mui/material'
 import './meter.css'
 import { KeyboardDoubleArrowDown, KeyboardDoubleArrowUp } from '@mui/icons-material'
 
 const Meter = ({N}) => {
-
   let Q = (102.74 * Math.log(N) - 65.27).toFixed(2)
 
   if(N === 0) Q = '---'

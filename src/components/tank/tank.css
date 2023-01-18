@@ -1,15 +1,32 @@
+.tank {
+  border: 2px solid rgba(2, 63, 82, 0.315);
+}
+.fronttank {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  opacity: 0.3;
+  background: radial-gradient(ellipse at center, rgba(240,249,255,1) 0%,rgba(203,235,255,1) 47%,rgba(161,219,255,1) 100%);
+}
 .water {
   position: absolute;
   background: url(/src/assets/img/water3.gif) center no-repeat;
   background-size: cover;
-  
   animation-timing-function: linear !important;
   right: 0;
   bottom: 0;
   left: 0;
 }
 .water__number {
+  position: absolute;
+  left: 0;
+  right: 0;
+  letter-spacing: 1px;
+  width: 100%;
   margin-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;

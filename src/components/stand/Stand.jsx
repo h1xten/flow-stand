@@ -27,6 +27,7 @@ const BackStand = () => {
 
 const Stand = () => {
   const N = useSelector(state => state.N)
+  const warningLight = useSelector(state => state.warningLight)
 
   return (
     <div className='stand'>
@@ -36,19 +37,25 @@ const Stand = () => {
         minWidth='40vw'
         minHeight='65vh'
         mb='5vh'
-        border='1px solid black'
+        borderRadius='5px'
+        // border='1px solid black'
+        boxShadow='0px 0px 35px 12px rgba(2, 2, 2, 0.2)'
         overflow='hidden'
         sx={{
           perspective: '1000px',
-          perspectiveOrigin: 'center -5em',
+          transform: 'translateZ(-100px)',
           transformStyle: 'preserve-3d'
         }}
       >
         <FrontStand N={N} />
         <div className="topside"></div>
-        <div className="botton"></div>
+        <div className="bottomside"></div>
         <div className="leftside"></div>
         <div className="rightside"></div>
+        <Box 
+          className={warningLight ? 'warning_light w_on' : 'warning_light'}
+        >
+        </Box>
         <BackStand />
       </Box>
     </div>

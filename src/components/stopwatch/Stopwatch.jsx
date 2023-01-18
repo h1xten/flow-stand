@@ -1,8 +1,8 @@
 import { ArrowRight } from '@mui/icons-material'
-import { Box, Button, Input } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStopwatch, setStopwatchEnd, setStopwatchStartFrom } from '../../store/standSlice/standSlice'
+import { setStopwatch } from '../../store/standSlice/standSlice'
 import Display from './Display'
 
 const Stopwatch = () => {
@@ -11,10 +11,6 @@ const Stopwatch = () => {
   const [interv, setInterv] = useState()
   // stopwatch status 0 - not started 1 - started 2 - stopped
   const stopwatch = useSelector(state => state.stopwatch)
-
-  // stopwatch settings
-  const startH = useSelector(state => state.stopwatchSettings.stopwatchStartFrom)
-  const endH = useSelector(state => state.stopwatchSettings.stopwatchEnd)
 
   const start = () => {
     dispatch(setStopwatch(1))
@@ -78,7 +74,7 @@ const Stopwatch = () => {
         }
         { stopwatch === 1 &&
           <>
-            <Button variant="contained" size='small' color='error' size='small' onClick={() => stop()}>Стоп</Button>
+            <Button variant="contained" size='small' color='error' onClick={() => stop()}>Стоп</Button>
             <Button variant="contained" size='small' onClick={() => reset()}>Заново</Button>
           </>
         }
@@ -89,7 +85,7 @@ const Stopwatch = () => {
           </>
         }
       </Box>
-      <Box
+      {/* <Box
         display='flex'
         flexDirection='column'
         p='0px 5px'
@@ -106,7 +102,7 @@ const Stopwatch = () => {
           onChange={(e) => dispatch(setStopwatchEnd(e.target.value))} 
           type='number'/>
           {endH}
-      </Box>
+      </Box> */}
     </Box>
   )
 }

@@ -12,16 +12,19 @@ const Tank = () => {
     >
       <Box
         position='relative'
+        className='tank'
         minWidth='15vw'
         minHeight='75vh'
         ml='1vw'
         overflow='hidden'
+        boxShadow='0px 0px 35px 12px rgba(2, 2, 2, 0.2);'
         sx={{
           borderBottomLeftRadius: '3rem',
           borderBottomRightRadius: '3rem',
-          border: '2px solid black',
+          
         }}
       >
+        <div className="fronttank"></div>
         <Water />
       </Box>
       <Box

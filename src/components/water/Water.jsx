@@ -1,16 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { AnimatePresence, motion, useAnimation, useMotionValue } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStopwatch } from '../../store/standSlice/standSlice'
+import { setWarningLight } from '../../store/standSlice/standSlice'
 
 const Water = () => {
   const dispatch = useDispatch()
   const N = useSelector(state => state.N)
   const water = useSelector(state => state.water)
   const dur = useSelector(state => state.duration)
-  // stopwatch settings
-  const startH = useSelector(state => state.stopwatchSettings.stopwatchStartFrom)
-  const endH = useSelector(state => state.stopwatchSettings.stopwatchEnd)
 
   const controls = useAnimation()
   const height = useMotionValue(0)
@@ -22,6 +19,7 @@ const Water = () => {
     controls.start({
       height: '100%',
       transition: {
+        ease: 'linear',
         duration: dur,
       }
     })
@@ -30,7 +28,8 @@ const Water = () => {
       height.set(0)
 
     }
-  }, [N, water, warning])
+  }) // prev dependenscies [N, water, warning] 
+
 
 
   useEffect(() => {
@@ -44,31 +43,32 @@ const Water = () => {
       if(latest !== 0 && (latest.indexOf('59.') !== -1 || latest.indexOf('58.9') !== -1)) {
         controls.stop()
         setWarning(true)
-      }
-
-      if(endH === Number(latest)) {
-        dispatch(setStopwatch(2))
-        console.log('STOPPED')
+        dispatch(setWarningLight(warning))
       }
       setHeightNumber(latest)
     })
-  }, [height, warning])
+  
+  }) // prev dependenscies [height, warning]
 
   return (
     <AnimatePresence>
       {water &&
+        <>
+        <div className='water__number'>
+          <p>
+            {heightNumber &&
+              heightNumber + ' см'
+            }
+          </p>
+        </div>
         <motion.div
           style={{height}}
           custom={N}
           className='water'
           animate={controls}
         >
-          <div className='water__number'>
-            {heightNumber &&
-              heightNumber + ' см'
-            }
-          </div>
         </motion.div>
+        </>
       }
     </AnimatePresence>
   )

@@ -4,13 +4,21 @@ const initialState = {
   power: false,
   duration: 0,
   N: 0,
+  warningLight: false,
   water: false,
   stopwatch: 0,
   stopwatchSettings: {
     stopwatchResult: null,
     stopwatchStartFrom: null,
     stopwatchEnd: null,
+    intervStop: false,
   }
+}
+
+const timeForN = (N) => {
+  const Q = 102.74 * Math.log(N) - 65.55
+  const time = ((1.47 / Q) * 3600 * 20)
+  return time
 }
 
 export const standSlice = createSlice({
@@ -19,7 +27,16 @@ export const standSlice = createSlice({
   reducers: {
     setN: (state, action) => {
       state.N = action.payload
-      const dur = state.N === 0 ? 5 : state.N === 20 ? 337 : state.N === 40 ? 10 : state.N === 60 ? 2 : state.N === 80 ? 50 : 5
+
+      // const dur = 
+      //   state.N === 0 ? 1000000 :
+      //   state.N === 20 ? timeForN(20) : 
+      //   state.N === 40 ? timeForN(40) : 
+      //   state.N === 60 ? timeForN(60) : 
+      //   state.N === 80 ? timeForN(80) : 10000000
+      // state.duration = dur
+
+      const dur = timeForN(state.N)
       state.duration = dur
     },
     setWater: (state, action) => {
@@ -37,8 +54,14 @@ export const standSlice = createSlice({
     setStopwatchEnd: (state, action) => {
       state.stopwatchSettings.stopwatchEnd = action.payload
     },
+    setIntervStop: (state, action) => {
+      state.stopwatchSettings.intervStop = action.payload
+    },
+    setWarningLight: (state, action) => {
+      state.warningLight = action.payload
+    }
 
   }
 })
 
-export const {setN, setWater, setDuration, setStopwatch, setStopwatchStartFrom, setStopwatchEnd} = standSlice.actions
+export const {setN, setWater, setDuration, setStopwatch, setStopwatchStartFrom, setStopwatchEnd, setIntervStop, setWarningLight} = standSlice.actions

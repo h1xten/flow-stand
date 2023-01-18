@@ -1,27 +1,39 @@
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
-import { Box, Button, IconButton, Typography } from '@mui/material'
+import { Box, Button, IconButton } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setN, setWater } from '../../store/standSlice/standSlice'
+import { setN, setWarningLight, setWater } from '../../store/standSlice/standSlice'
 
 const PumpButtons = ({N}) => {
   const dispatch = useDispatch()
 
   const handleUp = () => {
+    if(N === 0) {
+      dispatch(setN(20))
+      return
+    }
     if(N >= 80) return
-    dispatch(setN(N+20))
+    dispatch(setN(N+5))
   }
   const handleDown = () => {
     if(N <= 0) return
-    dispatch(setN(N-20))
+    if(N === 20) {
+      dispatch(setN(0))
+      return
+    }
+    dispatch(setN(N-5))
   }
 
   const handleStart = () => {
+    if(N === 0) {
+      return
+    }
     dispatch(setWater(true))
   }
 
   const handleStop = () => {
     dispatch(setWater(false))
+    dispatch(setWarningLight(false))
   }
 
   return (
@@ -33,7 +45,14 @@ const PumpButtons = ({N}) => {
       maxHeight='33%'
       minHeight='33%'
     >
-      <Button variant="contained" size='small' onClick={handleStart}>Пуск</Button>
+      <Button 
+        variant="contained" 
+        size='small' 
+        onClick={handleStart}
+        disabled={N === 0 ? true : false}
+        >
+          Пуск
+        </Button>
       <Box
         display='flex'
         flexDirection='column'
